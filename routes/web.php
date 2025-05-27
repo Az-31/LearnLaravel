@@ -18,17 +18,31 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/about', function () {
-    return view('about', ['nama' => 'Azzznl']);
+    return view('home', [
+        'header' => 'Home Page',
+        'title' => 'Home'
+    ]);
 });
 
 Route::get('/blog', function () {
-    return view('blog');
+    return view('blog', [
+        'header' => 'Blog Page',
+        'title' => 'Blog'
+    ]);
+});
+
+Route::get('/about', function () {
+    return view('about', [
+        'header' => 'About',
+        'title' => 'About',
+        'name' => 'Azzznl'
+    ]);
 });
 
 Route::get('/contact', function () {
-    return view('contact');
+    return view('contact', [
+        'header' => 'Contact',
+        'title' => 'Contact'
+    ]);
 });
+
