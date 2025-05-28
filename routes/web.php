@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 
@@ -29,46 +30,13 @@ Route::get('/posts', function () {
     return view('posts', [
         'header' => 'Blog Page',
         'title' => 'Blog',
-        'posts' => [
-            [
-                'id' => 1,
-                'title' => 'Judul 1',
-                'author' => 'Author 1',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam earum ex harum numquam, iure laboriosam unde repellendus doloremque f
-            acere reiciendis incidunt cumque distinctio iusto qui excepturi minima autem ut ipsum?'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Judul 2',
-                'author' => 'Author 2',
-                'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, totam facilis. Eum, saepe nulla. Aliquam minima explicabo culpa quidem sed aperiam atque esse suscipit id, cupiditate inventore velit magnam cum.'
-            ]
-
-        ]
+        'posts' => Post::all()
     ]);
 });
 
 Route::get('/posts/{id}', function ($id) {
-    $posts = [
-        [
-            'id' => 1,
-            'title' => 'Judul 1',
-            'author' => 'Author 1',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam earum ex harum numquam, iure laboriosam unde repellendus doloremque f
-            acere reiciendis incidunt cumque distinctio iusto qui excepturi minima autem ut ipsum?'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Judul 2',
-            'author' => 'Author 2',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, totam facilis. Eum, saepe nulla. Aliquam minima explicabo culpa quidem sed aperiam atque esse suscipit id, cupiditate inventore velit magnam cum.'
-        ]
 
-    ];
-
-    $post = Arr::first($posts, function($post) use ($id){
-        return $post['id'] == $id;
-    });
+    $post = Post::find($id);
 
     // dd($post);
 
